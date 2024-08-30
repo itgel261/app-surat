@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 15, 2021 at 09:46 AM
--- Server version: 10.1.48-MariaDB-0ubuntu0.18.04.1
--- PHP Version: 8.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Aug 30, 2024 at 01:29 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ams_native`
+-- Database: `appsurat_gel`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +36,7 @@ CREATE TABLE `tbl_disposisi` (
   `catatan` varchar(250) NOT NULL,
   `id_surat` int(10) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -56,14 +56,14 @@ CREATE TABLE `tbl_instansi` (
   `email` varchar(50) NOT NULL,
   `logo` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_instansi`
 --
 
 INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
-(1, 'Dinas Pendidikan Pemuda Dan Olahraga', 'SMK MasRud.com', 'Terakreditasi A', 'Sawahan, Nganjuk, Jawa Timur', 'Rudi', '-', 'https://masrud.com', 'email@masrud.com', 'logo.png', 1);
+(1, 'Dinas Pendidikan Pemuda Dan Olahraga', 'Global Energi Lestari', 'Terakreditasi A', 'Gedung Artha Graha', 'Habib', '-', 'https://gel-group.vercel.app/index.html', 'email@masrud.com', 'logo.png', 1);
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,7 @@ CREATE TABLE `tbl_klasifikasi` (
   `nama` varchar(250) NOT NULL,
   `uraian` mediumtext NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE `tbl_sett` (
   `surat_keluar` tinyint(2) NOT NULL,
   `referensi` tinyint(2) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_sett`
@@ -118,7 +118,7 @@ CREATE TABLE `tbl_surat_keluar` (
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -139,7 +139,7 @@ CREATE TABLE `tbl_surat_masuk` (
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -154,14 +154,14 @@ CREATE TABLE `tbl_user` (
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
-(1, 'masrud', '7d05dc02abe9cda729d0c798c886db47', 'Rudi', '-', 1);
+(1, 'superadmin', 'sudosu', 'Global Energi Lestari', '-', 1);
 
 --
 -- Indexes for dumped tables
