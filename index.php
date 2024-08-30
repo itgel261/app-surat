@@ -219,7 +219,7 @@ Website     : https://masrud.com
                                 $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
                                 $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
 
-                                $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password=MD5('$password')");
+                                $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password=('$password')");
 
                                 if(mysqli_num_rows($query) > 0){
                                     list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
