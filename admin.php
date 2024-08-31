@@ -116,6 +116,18 @@
             ?>
 
             <!-- Info Statistic START -->
+
+            <a href="">
+                <div class="col s12 m4">
+                    <div class="card grey">
+                        <div class="card-content">
+                            <span class="card-title white-text"><i class="material-icons md-36">mode_edit</i> Tulis Surat</span>
+                            <?php echo '<h5 class="white-text link">Tulis Surat</h5>'; ?>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
             <a href="?page=tsm">
                 <div class="col s12 m4">
                     <div class="card cyan">
