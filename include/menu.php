@@ -5,7 +5,7 @@
 
 <nav class="blue-grey darken-1">
     <div class="nav-wrapper">
-        <a href="./home.php" class="brand-logo center hide-on-large-only"><i class="material-icons md-36"></i>GEL</a>
+        <a href="./home.php" class="brand-logo center hide-on-large-only"><img style="width:40px; height:50px; padding-top:13px;" src="./asset/img/logo.png"/></a>
         <ul id="slide-out" class="side-nav" data-simplebar-direction="vertical">
             <li class="no-padding">
                 <div class="logo-side center blue-grey darken-3">
@@ -132,7 +132,7 @@
 
         <!-- Menu on large screen START -->
         <ul class="center hide-on-med-and-down" id="nv">
-            <li><a href="./" > GEL</a></li>
+            <li><a href="./" ><img style="width:50px; height:50px; padding-top:2px;" src="./asset/img/logo.png"/></a></li>
             <li><div class="grs"></></li>
             <li><a href="./"><i class="material-icons"></i>&nbsp; Beranda</a></li>
             <?php
