@@ -13,7 +13,7 @@
             if(isset($_REQUEST['submit'])){
 
                 //validasi form kosong
-                if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == ""){
+                if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == ""){
                     $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                     header("Location: ./admin.php?page=pro&sub=pass");
                     die();
@@ -23,7 +23,6 @@
                     $password_lama = $_REQUEST['password_lama'];
                     $password = $_REQUEST['password'];
                     $nama = $_REQUEST['nama'];
-                    $nip = $_REQUEST['nip'];
 
                     //validasi input data
                     if(!preg_match("/^[a-zA-Z0-9_]*$/", $username)){
@@ -36,12 +35,6 @@
                             $_SESSION['epnama'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)';
                             header("Location: ./admin.php?page=pro&sub=pass");
                             die();
-                        } else {
-
-                            if(!preg_match("/^[0-9 -]*$/", $nip)){
-                                $_SESSION['epnip'] = 'Form NIP hanya boleh mengandung karakter angka, spasi dan minus(-)';
-                                header("Location: ./admin.php?page=pro&sub=pass");
-                                die();
                             } else {
 
                                 if(strlen($username) < 5){
@@ -78,7 +71,7 @@
                                         }
                                     }
                                 }
-                            }
+                            
                         }
                     }
                 }
@@ -171,19 +164,7 @@
                                 <i class="material-icons prefix md-prefix">lock_outline</i>
                                 <input id="password_lama" type="password" class="validate" name="password_lama" required>
                                 <label for="password_lama">Password Lama</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix md-prefix">looks_one</i>
-                                <input id="nip" type="text" class="validate" name="nip" value="<?php echo $_SESSION['nip']; ?>" required autocomplete="off">
-                                    <?php
-                                        if(isset($_SESSION['epnip'])){
-                                            $epnip = $_SESSION['epnip'];
-                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$epnip.'</div>';
-                                            unset($_SESSION['epnip']);
-                                        }
-                                    ?>
-                                <label for="nip">NIP</label>
-                            </div>
+                                    </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">lock</i>
                                 <input id="password" type="password" class="validate" name="password" required>
@@ -260,11 +241,6 @@
                             <i class="material-icons prefix md-prefix">lock</i>
                             <input id="password" type="text" value="*" readonly disable>
                             <label for="password">Password</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix md-prefix">looks_one</i>
-                            <input id="nip" type="text" value="<?php echo $_SESSION['nip']; ?>" readonly disable>
-                            <label for="nip">NIP</label>
                         </div>
                     </div>
                     <!-- Row in form END -->

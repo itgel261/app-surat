@@ -106,7 +106,7 @@
                                     <tr>
                                         <th width="8%">No</th>
                                         <th width="23%">Username</th>
-                                        <th width="30%">Nama<br/>NIP</th>
+                                        <th width="30%">Nama</th>
                                         <th width="22%">Level</th>
                                         <th width="16%">Tindakan</th>
                                     </tr>
@@ -127,7 +127,7 @@
                                     } else {
                                         $row['admin'] = 'User Biasa';
                                     } echo '<td>'.$row['username'].'</td>
-                                            <td>'.$row['nama'].'<br/>'.$row['nip'].'</td>
+                                            <td>'.$row['nama'].'<br/></td>
                                             <td>'.$row['admin'].'</td>
                                             <td>';
 

@@ -65,11 +65,6 @@
             				                    <td width="86%">'.$row['nama'].'</td>
             				                </tr>
             				                <tr>
-            				                    <td width="13%">NIP</td>
-            				                    <td width="1%">:</td>
-            				                    <td width="86%">'.$row['nip'].'</td>
-            				                </tr>
-            				                <tr>
             				                    <td width="13%">Tipe User</td>
             				                    <td width="1%">:</td>';
                                                 if($row['admin'] == 2){

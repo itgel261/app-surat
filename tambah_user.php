@@ -8,7 +8,7 @@
         if(isset($_REQUEST['submit'])){
 
             //validasi form kosong
-            if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == "" || $_REQUEST['admin'] == ""){
+            if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['admin'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi!';
                 header("Location: ./admin.php?page=sett&sub=usr&act=add");
                 die();
@@ -17,7 +17,6 @@
                 $username = $_REQUEST['username'];
                 $password = $_REQUEST['password'];
                 $nama = $_REQUEST['nama'];
-                $nip = $_REQUEST['nip'];
                 $admin = $_REQUEST['admin'];
 
                 //validasi input data
@@ -30,12 +29,6 @@
                         $_SESSION['namauser'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)';
                         echo '<script language="javascript">window.history.back();</script>';
                     } else {
-
-                        if(!preg_match("/^[0-9. -]*$/", $nip)){
-                            $_SESSION['nipuser'] = 'Form NIP hanya boleh mengandung karakter angka, spasi dan minus(-)';
-                            echo '<script language="javascript">window.history.back();</script>';
-                        } else {
-
                             if(!preg_match("/^[2-3]*$/", $admin)){
                                 $_SESSION['tipeuser'] = 'Form Tipe User hanya boleh mengandung karakter angka 2 atau 3';
                                 echo '<script language="javascript">window.history.back();</script>';
@@ -58,8 +51,7 @@
                                             $_SESSION['errPassword'] = 'Password minimal 5 karakter!';
                                             echo '<script language="javascript">window.history.back();</script>';
                                         } else {
-
-                                            $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,nip,admin) VALUES('$username',MD5('$password'),'$nama','$nip','$admin')");
+                                            $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,admin) VALUES('$username','$password','$nama','$admin')");
 
                                             if($query != false){
                                                 $_SESSION['succAdd'] = 'SUKSES! User baru berhasil ditambahkan';
@@ -73,7 +65,7 @@
                                     }
                                 }
                             }
-                        }
+                        
                     }
                 }
             }
@@ -178,18 +170,7 @@
                                 ?>
                             <label for="password">Password</label>
                         </div>
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix md-prefix">looks_one</i>
-                            <input id="nip" type="text" class="validate" name="nip" required>
-                                <?php
-                                    if(isset($_SESSION['nipuser'])){
-                                        $nipuser = $_SESSION['nipuser'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$nipuser.'</div>';
-                                        unset($_SESSION['nipuser']);
-                                    }
-                                ?>
-                            <label for="nip">NIP</label>
-                        </div>
+
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Tipe User</label><br/>
                             <div class="input-field col s11 right">

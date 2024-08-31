@@ -3,10 +3,6 @@
     if(!empty($_SESSION['admin'])){
 ?>
 
-<noscript>
-    <meta http-equiv="refresh" content="0;URL='./enable-javascript.html'" />
-</noscript>
-
 <!-- Footer START -->
 <footer class="page-footer">
     <div class="container">
@@ -20,7 +16,7 @@
                 $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
                 while($data = mysqli_fetch_array($query)){
             ?>
-                <span class="white-text copyright-date">&copy; <?php echo date("Y"); ?> <?php echo $data['nama'] .'</span>
+                <span class="">&copy; <?php echo date("Y"); ?> <?php echo $data['nama'] .'</span>
                 ';?>
             <?php } ?>
         </div>
