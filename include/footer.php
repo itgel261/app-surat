@@ -16,7 +16,7 @@
                 $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
                 while($data = mysqli_fetch_array($query)){
             ?>
-                <span class="">&copy; <?php echo date("Y"); ?> <?php echo $data['nama'] .'</span>
+                <span class="">&copy; <?php echo date("Y"); ?> <?php echo $data['nama'] .' | <a href="" style="color:white;">Create By IT - Avengers</a></span>
                 ';?>
             <?php } ?>
         </div>

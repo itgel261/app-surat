@@ -117,7 +117,7 @@
 
             <!-- Info Statistic START -->
 
-            <a href="">
+            <a href="?page=ts">
                 <div class="col s12 m4">
                     <div class="card grey">
                         <div class="card-content">
