@@ -39,6 +39,9 @@
         if(isset($_REQUEST['page'])){
             $page = $_REQUEST['page'];
             switch ($page) {
+                case 'ts':
+                    include "tulis_surat.php";
+                    break;
                 case 'tsm':
                     include "transaksi_surat_masuk.php";
                     break;

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2024 at 01:29 PM
+-- Generation Time: Aug 31, 2024 at 12:02 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,7 +63,7 @@ CREATE TABLE `tbl_instansi` (
 --
 
 INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
-(1, 'Dinas Pendidikan Pemuda Dan Olahraga', 'Global Energi Lestari', 'Terakreditasi A', 'Gedung Artha Graha', 'Habib', '-', 'https://gel-group.vercel.app/index.html', 'email@masrud.com', 'logo.png', 1);
+(1, 'GEL GROUP', 'Global Energi Lestari', 'Terakreditasi A', 'Artha Graha Building, Lt. 30, SCBD,Sudirman, Jl. Jend. Sudirman kav. 52-53 Blok 52 - 53, RT.5/RW.3, Kel. Senayan, Kec. Kebayoran Baru, Jakarta Selatan', 'Habib', '-', 'https://gel-group.vercel.app/index.html', 'email@masrud.com', 'logo.png', 1);
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,7 @@ CREATE TABLE `tbl_sett` (
 --
 
 INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `referensi`, `id_user`) VALUES
-(1, 10, 10, 10, 1);
+(1, 50, 10, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -141,6 +141,13 @@ CREATE TABLE `tbl_surat_masuk` (
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `tbl_surat_masuk`
+--
+
+INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `id_user`) VALUES
+(2, 1, '001', 'JAKARTA', 'ISINYA BEGINI', '00111', 'ASA', '2024-08-31', '2024-08-31', '', 'ISI SURATNYA SEPERTI INI', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -161,7 +168,9 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
-(1, 'superadmin', 'sudosu', 'Global Energi Lestari', '-', 1);
+(1, 'superadmin', 'sudosu', 'Global Energi Lestari', '-', 1),
+(2, 'itsupport', 'itsupport123', 'IT', '', 3),
+(3, 'LEGAL', 'LEGAL', 'LEGAL GEL', '', 3);
 
 --
 -- Indexes for dumped tables
@@ -217,7 +226,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-  MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_klasifikasi`
@@ -235,13 +244,13 @@ ALTER TABLE `tbl_surat_keluar`
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
