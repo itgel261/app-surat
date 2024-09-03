@@ -105,6 +105,7 @@
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
                                         <th width="8%">No</th>
+                                        <th width="23%">Divisi</th>
                                         <th width="23%">Username</th>
                                         <th width="30%">Nama</th>
                                         <th width="22%">Level</th>
@@ -126,7 +127,8 @@
                                         $row['admin'] = 'Administrator';
                                     } else {
                                         $row['admin'] = 'User Biasa';
-                                    } echo '<td>'.$row['username'].'</td>
+                                    } echo '<td>'.$row['divisi'].'</td>
+                                            <td>'.$row['username'].'</td>
                                             <td>'.$row['nama'].'<br/></td>
                                             <td>'.$row['admin'].'</td>
                                             <td>';

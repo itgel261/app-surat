@@ -117,7 +117,7 @@
                 //menghitung jumlah pengguna
                 $count5 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
 
-                $count6 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
+                $count6 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_tulis_surat"));
             ?>
 
             <!-- Info Statistic START -->

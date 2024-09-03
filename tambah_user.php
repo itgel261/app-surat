@@ -8,7 +8,7 @@
         if(isset($_REQUEST['submit'])){
 
             //validasi form kosong
-            if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['admin'] == ""){
+            if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['admin'] == "" || $_REQUEST['divisi'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi!';
                 header("Location: ./admin.php?page=sett&sub=usr&act=add");
                 die();
@@ -18,6 +18,7 @@
                 $password = $_REQUEST['password'];
                 $nama = $_REQUEST['nama'];
                 $admin = $_REQUEST['admin'];
+                $divisi = $_REQUEST['divisi'];
 
                 //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9_]*$/", $username)){
@@ -51,7 +52,7 @@
                                             $_SESSION['errPassword'] = 'Password minimal 5 karakter!';
                                             echo '<script language="javascript">window.history.back();</script>';
                                         } else {
-                                            $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,admin) VALUES('$username','$password','$nama','$admin')");
+                                            $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,admin) VALUES('$username','$password','$nama','$admin','$divisi')");
 
                                             if($query != false){
                                                 $_SESSION['succAdd'] = 'SUKSES! User baru berhasil ditambahkan';
@@ -169,6 +170,19 @@
                                     }
                                 ?>
                             <label for="password">Password</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">assignment_ind</i>
+                            <input id="divisi" type="text" class="validate" name="divisi" required>
+                                <?php
+                                    if(isset($_SESSION['divisi'])){
+                                        $namauser = $_SESSION['divisi'];
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$divisi.'</div>';
+                                        unset($_SESSION['divisi']);
+                                    }
+                                ?>
+                            <label for="divisi">Divisi</label>
                         </div>
 
                         <div class="input-field col s6">
