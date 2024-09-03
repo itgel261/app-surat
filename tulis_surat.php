@@ -6,7 +6,7 @@
                                         die();
                                     }
 
-                                    $jenissurat = "SELECT id_jenis_surat, jenis_surat, kode_surat, divisi, id_user FROM tbl_jenis_surat";
+                                    $jenissurat = "SELECT id_jenis_surat, jenis_surat, s_jenis_surat, kode_surat, divisi, id_user FROM tbl_jenis_surat";
                                     $srt = mysqli_query($config, $jenissurat);
             ?>
             <div class="row">
@@ -127,9 +127,13 @@
                                         <?php
                                         // Mengisi dropdown dengan data dari database
                                         while ($row = mysqli_fetch_assoc($srt)) {
-                                            $id_jenis_surat = htmlspecialchars($row['id_jenis_surat']);
+                                            $id_js = htmlspecialchars($row['id_jenis_surat']);
+                                            $divisijs = htmlspecialchars($row['divisi']);
                                             $jenis_surat = htmlspecialchars($row['jenis_surat']);
-                                            echo "<option value=\"$id_jenis_surat\">$jenis_surat</option>";
+                                            // Tampilkan opsi hanya jika id_user cocok dengan id_jenis_surat
+                                            if ($_SESSION['divisi'] == $divisijs) {
+                                                echo "<option value=\"$id_js\">$jenis_surat</option>";
+                                            }
                                         }
                                         ?>
 
