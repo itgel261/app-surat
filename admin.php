@@ -138,7 +138,7 @@
                     <div class="card grey">
                         <div class="card-content">
                             <span class="card-title white-text"><i class="material-icons md-36">mode_edit</i> Jumlah List Surat</span>
-                            <?php echo '<h5 class="white-text link">'.$count6.'Tulis Surat</h5>'; ?>
+                            <?php echo '<h5 class="white-text link">'.$count6.' List Surat</h5>'; ?>
                         </div>
                     </div>
                 </div>

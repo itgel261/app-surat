@@ -207,16 +207,17 @@
                                 $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
                                 $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
 
-                                $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password=('$password')");
+                                $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin, divisi FROM tbl_user WHERE username=BINARY'$username' AND password=('$password')");
 
                                 if(mysqli_num_rows($query) > 0){
-                                    list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
+                                    list($id_user, $username, $nama, $nip, $admin, $divisi) = mysqli_fetch_array($query);
 
                                     //buat session
                                     $_SESSION['id_user'] = $id_user;
                                     $_SESSION['username'] = $username;
                                     $_SESSION['nama'] = $nama;
                                     $_SESSION['nip'] = $nip;
+                                    $_SESSION['divisi'] = $divisi;
                                     $_SESSION['admin'] = $admin;
 
                                     header("Location: ./admin.php");
