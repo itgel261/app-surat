@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2024 at 12:02 PM
+-- Generation Time: Sep 03, 2024 at 05:13 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +37,26 @@ CREATE TABLE `tbl_disposisi` (
   `id_surat` int(10) NOT NULL,
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_divisi`
+--
+
+CREATE TABLE `tbl_divisi` (
+  `id_divisi` varchar(3) NOT NULL,
+  `divisi` varchar(255) NOT NULL,
+  `id_user` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_divisi`
+--
+
+INSERT INTO `tbl_divisi` (`id_divisi`, `divisi`, `id_user`) VALUES
+('2', 'IT', 2),
+('3', 'LEGAL GEL', 3);
 
 -- --------------------------------------------------------
 
@@ -146,7 +166,21 @@ CREATE TABLE `tbl_surat_masuk` (
 --
 
 INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `id_user`) VALUES
-(2, 1, '001', 'JAKARTA', 'ISINYA BEGINI', '00111', 'ASA', '2024-08-31', '2024-08-31', '', 'ISI SURATNYA SEPERTI INI', 3);
+(2, 1, '001', 'JAKARTA', 'ISINYA BEGINI', '00111', 'ASA', '2024-08-31', '2024-08-31', '', 'ISI SURATNYA SEPERTI INI', 3),
+(3, 2, '002', 'zcxzcxz', 'xzcxzcxz', 'xzcxz', 'zxcxzcxz', '2024-09-02', '2024-09-02', '', 'zxcxzcxz', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_tulis_surat`
+--
+
+CREATE TABLE `tbl_tulis_surat` (
+  `id_surat` int(11) NOT NULL,
+  `nomor_surat` int(11) NOT NULL,
+  `divisi` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -181,6 +215,12 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin
 --
 ALTER TABLE `tbl_disposisi`
   ADD PRIMARY KEY (`id_disposisi`);
+
+--
+-- Indexes for table `tbl_divisi`
+--
+ALTER TABLE `tbl_divisi`
+  ADD PRIMARY KEY (`id_divisi`);
 
 --
 -- Indexes for table `tbl_instansi`
@@ -244,7 +284,7 @@ ALTER TABLE `tbl_surat_keluar`
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
