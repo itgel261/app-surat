@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2024 at 06:43 AM
+-- Generation Time: Sep 04, 2024 at 12:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -194,7 +194,8 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `divis
 (9, 'bankleasing', 'bank123', 'Bank and Leasing', '', 'BNL', 3),
 (10, 'financear', 'finance123', 'Account Receivable', '', 'AR', 3),
 (11, 'taxgel', 'taxgel123', 'TAX', '', 'TAX', 3),
-(12, 'accounting', 'acc123', 'Accounting', '', 'ACC', 3);
+(12, 'accounting', 'acc123', 'Accounting', '', 'ACC', 3),
+(13, 'generalaffair', 'generalaffair123', 'General Affair', '', 'GA', 3);
 
 --
 -- Indexes for dumped tables
@@ -280,7 +281,7 @@ ALTER TABLE `tbl_surat_masuk`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
