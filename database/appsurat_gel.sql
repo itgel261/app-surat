@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2024 at 05:13 AM
+-- Generation Time: Sep 04, 2024 at 06:43 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,26 +37,6 @@ CREATE TABLE `tbl_disposisi` (
   `id_surat` int(10) NOT NULL,
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_divisi`
---
-
-CREATE TABLE `tbl_divisi` (
-  `id_divisi` varchar(3) NOT NULL,
-  `divisi` varchar(255) NOT NULL,
-  `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_divisi`
---
-
-INSERT INTO `tbl_divisi` (`id_divisi`, `divisi`, `id_user`) VALUES
-('2', 'IT', 2),
-('3', 'LEGAL GEL', 3);
 
 -- --------------------------------------------------------
 
@@ -177,9 +157,9 @@ INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`
 
 CREATE TABLE `tbl_tulis_surat` (
   `id_surat` int(11) NOT NULL,
-  `nomor_surat` int(11) NOT NULL,
-  `divisi` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `nomor_surat` varchar(255) NOT NULL,
+  `divisi` varchar(255) NOT NULL,
+  `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -194,6 +174,7 @@ CREATE TABLE `tbl_user` (
   `password` varchar(35) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
+  `divisi` varchar(255) NOT NULL,
   `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -201,10 +182,19 @@ CREATE TABLE `tbl_user` (
 -- Dumping data for table `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
-(1, 'superadmin', 'sudosu', 'Global Energi Lestari', '-', 1),
-(2, 'itsupport', 'itsupport123', 'IT', '', 3),
-(3, 'LEGAL', 'LEGAL', 'LEGAL GEL', '', 3);
+INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `divisi`, `admin`) VALUES
+(1, 'superadmin', 'sudosu', 'Global Energi Lestari', '-', 'ALL', 1),
+(2, 'itsupport', 'itsupport123', 'IT', '', 'IT', 3),
+(3, 'LEGAL', 'LEGAL', 'LEGAL GEL', '', 'LEGAL', 3),
+(4, 'marketing', 'marketing123', 'Marketing Sales Shipping', '', 'MSS', 3),
+(5, 'corsec', 'corsec123', 'CORSEC', '', 'CS', 3),
+(6, 'globalsinergi', 'globalsinergi123', 'Global Sinergi Maritim', '', 'GSM', 3),
+(7, 'talent', 'talent123', 'Talent and Culture', '', 'TC', 3),
+(8, 'financeap', 'finance123', 'Account Payable', '', 'AP', 3),
+(9, 'bankleasing', 'bank123', 'Bank and Leasing', '', 'BNL', 3),
+(10, 'financear', 'finance123', 'Account Receivable', '', 'AR', 3),
+(11, 'taxgel', 'taxgel123', 'TAX', '', 'TAX', 3),
+(12, 'accounting', 'acc123', 'Accounting', '', 'ACC', 3);
 
 --
 -- Indexes for dumped tables
@@ -215,12 +205,6 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin
 --
 ALTER TABLE `tbl_disposisi`
   ADD PRIMARY KEY (`id_disposisi`);
-
---
--- Indexes for table `tbl_divisi`
---
-ALTER TABLE `tbl_divisi`
-  ADD PRIMARY KEY (`id_divisi`);
 
 --
 -- Indexes for table `tbl_instansi`
@@ -250,6 +234,12 @@ ALTER TABLE `tbl_surat_keluar`
 -- Indexes for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
+  ADD PRIMARY KEY (`id_surat`);
+
+--
+-- Indexes for table `tbl_tulis_surat`
+--
+ALTER TABLE `tbl_tulis_surat`
   ADD PRIMARY KEY (`id_surat`);
 
 --
@@ -290,7 +280,7 @@ ALTER TABLE `tbl_surat_masuk`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

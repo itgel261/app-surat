@@ -6,8 +6,24 @@
                                         die();
                                     }
 
-                                    $jenissurat = "SELECT id_jenis_surat, jenis_surat, s_jenis_surat, kode_surat, divisi, id_user FROM tbl_jenis_surat";
-                                    $srt = mysqli_query($config, $jenissurat);
+                                    // Ambil divisi dari session
+                                    $divisi = $_SESSION['divisi'];
+
+                                    // Query untuk mendapatkan jenis surat yang sesuai dengan divisi
+                                    $ps = "SELECT id_jenis_surat, jenis_surat, s_jenis_surat, kode_surat, divisi, id_user FROM tbl_jenis_surat WHERE divisi = ?";
+                                    $stmt = $config->prepare($ps);
+
+                                    if (!$stmt) {
+                                        die("Prepare failed: " . $config->error);
+                                    }
+
+                                    $stmt->bind_param("s", $divisi);
+                                    $stmt->execute();
+                                    $srt = $stmt->get_result();
+
+                                    if (!$srt) {
+                                        die("Execute failed: " . $stmt->error);
+                                    }
             ?>
             <div class="row">
                 <!-- Secondary Nav START -->
@@ -126,14 +142,10 @@
 
                                         <?php
                                         // Mengisi dropdown dengan data dari database
-                                        while ($row = mysqli_fetch_assoc($srt)) {
+                                        while ($row = $srt->fetch_assoc()) {
                                             $id_js = htmlspecialchars($row['id_jenis_surat']);
-                                            $divisijs = htmlspecialchars($row['divisi']);
                                             $jenis_surat = htmlspecialchars($row['jenis_surat']);
-                                            // Tampilkan opsi hanya jika id_user cocok dengan id_jenis_surat
-                                            if ($_SESSION['divisi'] == $divisijs) {
-                                                echo "<option value=\"$id_js\">$jenis_surat</option>";
-                                            }
+                                            echo "<option value=\"$id_js\">$jenis_surat</option>";
                                         }
                                         ?>
 
