@@ -77,20 +77,20 @@ if (isset($_SESSION['errEmpty'])) {
         <!-- Row in form START -->
         <div class="input-field col s6">
             <i class="material-icons prefix md-prefix">looks_one</i>
-            <input id="no_surat" type="text" class="validate" name="no_surat" required>
+            <input id="no_surat" type="text" class="validate" name="no_surat" onkeyup="displayType()" required>
             <label for="no_surat">Nomor Surat</label>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">assignment_ind</i>
-                <input id="divisi" type="text" class="validate" name="divisi" value="<?php echo $_SESSION['divisi']; ?>" disabled>
+                <input id="divisi" type="text" class="validate" name="divisi" value="<?php echo $_SESSION['divisi']; ?>" onkeyup="displayType()" disabled>
                 <label for="divisi">Divisi</label>
             </div>
 
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">date_range</i>
-                <input id="tgl_surat" type="text" name="tgl_surat" class="datepicker" required>
+                <input id="tgl_surat" type="text" name="tgl_surat" class="datepicker" onkeyup="displayType()" required>
                 <?php
                 if (isset($_SESSION['tgl_surat'])) {
                     $tgl_surat = $_SESSION['tgl_surat'];
@@ -102,10 +102,10 @@ if (isset($_SESSION['errEmpty'])) {
             </div>
 
             <?php
-            if ($_SESSION['divisi'] == "ALL" || $_SESSION['divisi'] == "LEGAL") { ?>
+            if ($_SESSION['divisi'] == "ALL" || $_SESSION['divisi'] == "LEGAL" || $_SESSION['divisi'] == "GA") { ?>
                 <div class="input-field col s6">
                     <i class="material-icons prefix md-prefix">account_balance</i>
-                    <input id="pt_pertama" type="text" name="pt_pertama" class="datepicker" required>
+                    <input id="pt_pertama" type="text" name="pt_pertama" class="datepicker"  onkeyup="displayType()" required>
                     <?php
                     if (isset($_SESSION['pt_pertama'])) {
                         $pt_pertama = $_SESSION['pt_pertama'];
@@ -116,9 +116,14 @@ if (isset($_SESSION['errEmpty'])) {
                     <label for="pt_pertama">PT Pihak Pertama</label>
                 </div>
 
+            <?php
+                    }
+            ?>
+            <?php
+             if ($_SESSION['divisi'] == "ALL" || $_SESSION['divisi'] == "LEGAL"){?>
                 <div class="input-field col s6">
                     <i class="material-icons prefix md-prefix">account_balance</i>
-                    <input id="pt_kedua" type="text" name="pt_kedua" class="datepicker" required>
+                    <input id="pt_kedua" type="text" name="pt_kedua" class="datepicker"  onkeyup="displayType()" required>
                     <?php
                     if (isset($_SESSION['pt_kedua'])) {
                         $pt_kedua = $_SESSION['pt_kedua'];
@@ -128,28 +133,17 @@ if (isset($_SESSION['errEmpty'])) {
                     ?>
                     <label for="pt_kedua">PT Pihak Kedua</label>
                 </div>
-            <?php
-            }
-            ?>
+
+                <?php
+                    }
+                 ?>
+            
 
             <?php
             if ($_SESSION['divisi'] == "ALL" || $_SESSION['divisi'] == "GA") { ?>
                 <div class="input-field col s6">
                     <i class="material-icons prefix md-prefix">account_balance</i>
-                    <input id="pt_pertama" type="text" name="pt_pertama" class="datepicker" required>
-                    <?php
-                    if (isset($_SESSION['pt_pertama'])) {
-                        $pt_pertama = $_SESSION['pt_pertama'];
-                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">' . $pt_pertama . '</div>';
-                        unset($_SESSION['pt_pertama']);
-                    }
-                    ?>
-                    <label for="pt_pertama">PT Pihak Pertama</label>
-                </div>
-
-                <div class="input-field col s6">
-                    <i class="material-icons prefix md-prefix">account_balance</i>
-                    <input id="vendor" type="text" name="vendor" class="datepicker" required>
+                    <input id="vendor" type="text" name="vendor" class="datepicker" onkeyup="displayType()" required>
                     <?php
                     if (isset($_SESSION['vendor'])) {
                         $vendor = $_SESSION['vendor'];
@@ -176,7 +170,7 @@ if (isset($_SESSION['errEmpty'])) {
                             $kode_surat = htmlspecialchars($row['kode_surat']);
                             echo "<option value=\"$id_js\" data-jenis=\"$jenis_surat\" data-sjenis=\"$s_jenis_surat\" data-kodesurat=\"$kode_surat\">$jenis_surat</option>";
                         }
-                        ?> 
+                        ?>
                     </select>
                 </div>
 
@@ -185,29 +179,48 @@ if (isset($_SESSION['errEmpty'])) {
                         Kode Surat : <span id="kode_surat_display"></span>
                     </div>
                 </div>
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var selectElement = document.getElementById('jenis_surat');
-                        var kodeSuratDisplay = document.getElementById('kode_surat_display');
-                        
-                        selectElement.addEventListener('change', function() {
-                            var selectedOption = selectElement.options[selectElement.selectedIndex];
-                            var sJenisSurat = selectedOption.getAttribute('data-sjenis');
-                            var kodeSurat = selectedOption.getAttribute('data-kodesurat');
-                            
-                            // Format the Kode Surat as per your requirement
-                            var formattedKodeSurat = `No/PT-${sJenisSurat}/$divisi-$vendor/Bulan/Tahun`;
-                            
-                            // Update the display element with the formatted Kode Surat
-                            kodeSuratDisplay.textContent = formattedKodeSurat;
-                        });
-                    });
-                </script>
+                <div class="input-field col s6">
+                    </div>
 
 
-            <br><br><br>
+            <br><br><br><br>
             <div class="sectionsurat">
+
+
+
+            <?php
+            if ($_SESSION['divisi'] == "GA") { ?>
+            <script>
+                function displayType() {
+                    var nosurat = document.getElementById("no_surat").value;
+                    var divisi = document.getElementById("divisi").value;
+                    var pt_pertama = document.getElementById("pt_pertama").value;
+                    var vendor = document.getElementById("vendor").value;
+                    var tgl_surat = document.getElementById("tgl_surat").value;
+                    
+                    // Pisahkan hari, bulan, dan tahun dari tanggal
+                    var dateParts = tgl_surat.split("-");
+                    var year = dateParts[0];
+                    var month = parseInt(dateParts[1], 10) || "";
+
+                    // Format tanggal dalam format yang diinginkan
+                    var formattedDate = toRoman(month) + "/" + year;
+                    
+                    // Update target dengan informasi yang dipisahkan
+                    var targetKetikan = document.getElementById("kode_surat_display");
+                    targetKetikan.innerHTML = nosurat + "/" + pt_pertama + "/" + divisi + "-" + vendor + "/" + formattedDate;
+                }
+
+                function toRoman(num) {
+                    if (isNaN(num)) return '';
+                    var roman = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+                    return roman[num - 1] || '';
+                }
+            </script>
+            <?php
+            }
+            ?>
+            
                 <div class="header-isisurat" style="padding:5px; padding-left:500px;">
                     <a href=""><i class="material-icons md-36">format_bold</i></a>
                     <a href=""><i class="material-icons md-36">format_italic</i></a>
