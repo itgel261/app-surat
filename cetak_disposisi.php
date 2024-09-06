@@ -172,7 +172,6 @@
                         echo '<img class="logodisp" src="./upload/'.$logo.'"/>';
                         echo '<h6 class="up">'.$institusi.'</h6>';
                         echo '<h5 class="up" id="nama">'.$nama.'</h5><br/>';
-                        echo '<h6 class="status">'.$status.'</h6>';
                         echo '<span id="alamat">'.$alamat.'</span>';
 
                     echo '

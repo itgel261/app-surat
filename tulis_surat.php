@@ -120,7 +120,7 @@ if (isset($_SESSION['errEmpty'])) {
                     }
             ?>
             <?php
-             if ($_SESSION['divisi'] == "ALL" || $_SESSION['divisi'] == "LEGAL"){?>
+             if ($_SESSION['divisi'] == "ALL" || $_SESSION['divisi'] == "LEGAL" && $h_idjs == "1"){?>
                 <div class="input-field col s6">
                     <i class="material-icons prefix md-prefix">account_balance</i>
                     <input id="pt_kedua" type="text" name="pt_kedua" class="datepicker"  onkeyup="displayType()" required>
@@ -159,7 +159,7 @@ if (isset($_SESSION['errEmpty'])) {
 
                 <div class="input-field col s6">
                     <i class="material-icons prefix md-prefix">subtitles</i>
-                    <select id="jenis_surat" name="jenis_surat" required>
+                    <select id="jenis_surat" name="jenis_surat" onkeyup="displayType()" required>
                         <option value="" disabled selected>Pilih Jenis Surat</option>
                         <?php
                         // Fetch and populate dropdown options with data attributes
@@ -197,7 +197,8 @@ if (isset($_SESSION['errEmpty'])) {
                     var pt_pertama = document.getElementById("pt_pertama").value;
                     var vendor = document.getElementById("vendor").value;
                     var tgl_surat = document.getElementById("tgl_surat").value;
-                    
+                   
+
                     // Pisahkan hari, bulan, dan tahun dari tanggal
                     var dateParts = tgl_surat.split("-");
                     var year = dateParts[0];
@@ -209,6 +210,42 @@ if (isset($_SESSION['errEmpty'])) {
                     // Update target dengan informasi yang dipisahkan
                     var targetKetikan = document.getElementById("kode_surat_display");
                     targetKetikan.innerHTML = nosurat + "/" + pt_pertama + "/" + divisi + "-" + vendor + "/" + formattedDate;
+                }
+
+                function toRoman(num) {
+                    if (isNaN(num)) return '';
+                    var roman = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+                    return roman[num - 1] || '';
+                }
+            </script>
+            <?php
+            }
+            ?>
+
+
+<?php
+            if ($_SESSION['divisi'] == "LEGAL") { ?>
+            <script>
+                function displayType() {
+                    var nosurat = document.getElementById("no_surat").value;
+                    var divisi = document.getElementById("divisi").value;
+                    var pt_pertama = document.getElementById("pt_pertama").value;
+                    var pt_kedua = document.getElementById("pt_kedua").value;
+                    var tgl_surat = document.getElementById("tgl_surat").value;
+                    var h_idjs = document.getElementById("jenis_surat").value;
+
+                    
+                    // Pisahkan hari, bulan, dan tahun dari tanggal
+                    var dateParts = tgl_surat.split("-");
+                    var year = dateParts[0];
+                    var month = parseInt(dateParts[1], 10) || "";
+
+                    // Format tanggal dalam format yang diinginkan
+                    var formattedDate = toRoman(month) + "/" + year;
+                    
+                    // Update target dengan informasi yang dipisahkan
+                    var targetKetikan = document.getElementById("kode_surat_display");
+                    targetKetikan.innerHTML = nosurat + "/" + pt_pertama + "/" + formattedDate;
                 }
 
                 function toRoman(num) {
