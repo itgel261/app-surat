@@ -223,7 +223,7 @@ if (isset($_SESSION['errEmpty'])) {
             ?>
 
 
-<?php
+            <?php
             if ($_SESSION['divisi'] == "LEGAL") { ?>
             <script>
                 function displayType() {
