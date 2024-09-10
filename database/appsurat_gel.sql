@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2024 at 12:44 PM
+-- Generation Time: Sep 10, 2024 at 06:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,7 +50,7 @@ CREATE TABLE `tbl_instansi` (
   `nama` varchar(150) NOT NULL,
   `status` varchar(150) NOT NULL,
   `alamat` varchar(150) NOT NULL,
-  `kepsek` varchar(50) NOT NULL,
+  `depthead` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `website` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -62,8 +62,51 @@ CREATE TABLE `tbl_instansi` (
 -- Dumping data for table `tbl_instansi`
 --
 
-INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
-(1, 'GEL GROUP', 'Global Energi Lestari', 'Terakreditasi A', 'Artha Graha Building, Lt. 30, SCBD,Sudirman, Jl. Jend. Sudirman kav. 52-53 Blok 52 - 53, RT.5/RW.3, Kel. Senayan, Kec. Kebayoran Baru, Jakarta Selatan', 'Habib', '-', 'https://gel-group.vercel.app/index.html', 'email@masrud.com', 'logo.png', 1);
+INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `depthead`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
+(1, 'GEL GROUP', 'Global Energi Lestari', '', 'Artha Graha Building, Lt. 30, SCBD,Sudirman, Jl. Jend. Sudirman kav. 52-53 Blok 52 - 53, RT.5/RW.3, Kel. Senayan, Kec. Kebayoran Baru, Jakarta Selatan', 'Habib', '-', 'https://gel-group.vercel.app/index.html', 'email@masrud.com', 'logo.png', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_jenis_surat`
+--
+
+CREATE TABLE `tbl_jenis_surat` (
+  `id_jenis_surat` int(255) NOT NULL,
+  `jenis_surat` varchar(255) NOT NULL,
+  `s_jenis_surat` varchar(255) NOT NULL,
+  `kode_surat` varchar(255) NOT NULL,
+  `divisi` varchar(255) NOT NULL,
+  `id_user` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_jenis_surat`
+--
+
+INSERT INTO `tbl_jenis_surat` (`id_jenis_surat`, `jenis_surat`, `s_jenis_surat`, `kode_surat`, `divisi`, `id_user`) VALUES
+(1, 'Surat Permohonan', 'SP', '', 'LEGAL', 3),
+(2, 'Surat Perjanjian', '', '', 'LEGAL', 3),
+(3, 'Surat External', 'BA', '', 'MSS', 4),
+(4, 'Surat ke Jetty', 'BA', '', 'MSS', 4),
+(5, 'Surat External Perubahan Email', 'EXT', '', 'CS', 5),
+(6, 'Surat Internal Pembatal Transaksi', 'INT', '', 'CS', 5),
+(7, 'Surat Penunjukan Keagenan', 'SPK', '', 'GSM', 6),
+(8, 'Surat Ke Artha Graha pengajuan Kartu Akses', '', '', 'GA', 13),
+(9, 'Cop Bank', 'EXT', 'TNC', 'TC', 7),
+(10, 'BPJS', 'BPJSKes', 'TNC', 'TC', 7),
+(11, 'Offering Letter', 'Loo', 'TNC', 'TC', 7),
+(12, 'Internal Memo', 'IM', 'TNC', 'TC', 7),
+(13, 'Paklaring', 'Ref', 'TNC', 'TC', 7),
+(14, 'Surat Permohonan Pengembalian Dana', '', '', 'AP', 8),
+(15, 'Surat Permohonan Pengembalian Dana', '', '', 'BNL', 9),
+(16, 'Surat ke PLN Permohonan Pembayaran Batubara', '', '', 'AR', 10),
+(17, 'Surat Permohonan Pengembalian Dana', '', '', 'TAX', 11),
+(18, 'Surat Permintaan NPWP', '', '', 'TAX', 11),
+(19, 'Balasan Surat Penjelasan S-373-P2DK-KPP', '', '', 'TAX', 11),
+(20, 'Klarifikasi atas pencabutan pengukuhan PKP', '', '', 'TAX', 11),
+(21, 'Permintaan Salinan Tunggakan Pajak', '', '', 'TAX', 11),
+(22, '', '', '', 'ACC', 12);
 
 -- --------------------------------------------------------
 
@@ -212,6 +255,12 @@ ALTER TABLE `tbl_disposisi`
 --
 ALTER TABLE `tbl_instansi`
   ADD PRIMARY KEY (`id_instansi`);
+
+--
+-- Indexes for table `tbl_jenis_surat`
+--
+ALTER TABLE `tbl_jenis_surat`
+  ADD PRIMARY KEY (`id_jenis_surat`);
 
 --
 -- Indexes for table `tbl_klasifikasi`
